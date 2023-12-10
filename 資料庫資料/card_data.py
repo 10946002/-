@@ -1,9 +1,12 @@
 import pymysql
-connection = pymysql.connect(
+connection = pymysql.connect(host='127.0.0.1',
+                             user='****',
+                             password='****',
+                             db='ucard',
                             )
 
 import pandas as pd
-df = pd.read_excel("資料庫資料整理V5.xlsx",sheet_name="卡片")
+df = pd.read_excel("資料庫資料整理V6.xlsx",sheet_name="卡片")
 print(len(df))#總比數
 for i in range(len(df)):
     if len(str(df["銀行"][i]))==2:

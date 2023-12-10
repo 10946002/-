@@ -1,5 +1,9 @@
 import pymysql
-connection = pymysql.connect(
+import math
+connection = pymysql.connect(host='127.0.0.1',
+                             user='*******',
+                             password='*******',
+                             db='ucard',
                             )
 import pandas as pd
 df = pd.read_excel("資料庫資料整理V6.xlsx",sheet_name="長期")
@@ -43,7 +47,7 @@ for i in range(len(df)):
             elif bill=="0":
                  bill=0
             else:
-                 bill=df["自動扣繳"][i]
+                 bill=df["電子帳單"][i]
 
             print(note)
             
@@ -61,3 +65,27 @@ for i in range(len(df)):
 
 
         
+
+'''
+for i in range(len(df)):
+    if len(str(df["銀行"][i]))==2:
+        bank=("0"+str(df["銀行"][i]))
+    else:
+        bank=str(df["銀行"][i])
+    
+    category=str(df["發行商"][i])
+    
+    if len(str(df["號碼"][i]))==1:
+        id="00"+ str(df["號碼"][i])
+    elif len(str(df["號碼"][i]))==2:
+          id="0"+ str(df["號碼"][i])
+    else :  
+        id=str(df["號碼"][i])
+
+    name=str(df["名稱"][i])
+    address=str(df["網址"][i])
+    
+'''
+
+        
+    #print (bank,c,id,name,address)
