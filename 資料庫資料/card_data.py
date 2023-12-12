@@ -1,9 +1,19 @@
 import pymysql
 connection = pymysql.connect(host='127.0.0.1',
-                             user='****',
-                             password='****',
+                             user='******',
+                             password='******',
                              db='ucard',
                             )
+try:
+                cursor = connection.cursor()
+                delete = "delete FROM ucard.cards;"
+                cursor.execute(delete)
+                alter = "ALTER TABLE ucard.cards AUTO_INCREMENT = 1"
+                cursor.execute(alter)
+                connection.commit()
+except pymysql.connect.Error as e:
+                    print("Error: Could not make connecion to the MySQL database")
+                    print(e)
 
 import pandas as pd
 df = pd.read_excel("資料庫資料整理V6.xlsx",sheet_name="卡片")

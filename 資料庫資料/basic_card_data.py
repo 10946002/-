@@ -1,11 +1,24 @@
 import pymysql
 import math
 connection = pymysql.connect(host='127.0.0.1',
-                             user='*******',
-                             password='*******',
+                             user='*****',
+                             password='******',
                              db='ucard',
                             )
 import pandas as pd
+try:
+                cursor = connection.cursor()
+                delete = "delete FROM ucard.basic;"
+                cursor.execute(delete)
+                alter = "ALTER TABLE ucard.basic AUTO_INCREMENT = 1"
+                cursor.execute(alter)
+                connection.commit()
+except pymysql.connect.Error as e:
+                    print("Error: Could not make connecion to the MySQL database")
+                    print(e)
+          
+
+
 df = pd.read_excel("資料庫資料整理V6.xlsx",sheet_name="長期")
 print(len(df))#總比數
 for i in range(len(df)):
@@ -64,7 +77,6 @@ for i in range(len(df)):
                     print(e)
 
 
-        
 
 '''
 for i in range(len(df)):
